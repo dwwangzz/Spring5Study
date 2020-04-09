@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="wangzz" class="com.coco.study.spring5.domain.Wangzz">
+        <property name="id" value="1"/>
+        <property name="name" value="王子正"/>
+        <property name="age" value="18"/>
+    </bean>
+    <alias name="wangzz" alias="wzz"/>
+
+    <!-- 使用静态工厂方法实例化 -->
+    <bean id="clientAService0" class="com.coco.study.spring5.service.ClientAService" factory-method="createInstance"/>
+
+    <!-- 使用实例里面的工厂方法实例化 -->
+    <bean id="serviceLocator" class="com.coco.study.spring5.service.ClientServiceLocator"/>
+    <bean id="clientAService" factory-bean="serviceLocator" factory-method="createClientAServiceInstance"/>
+    <bean id="clientBService" factory-bean="serviceLocator" factory-method="createClientBServiceInstance"/>
+
+</beans>
